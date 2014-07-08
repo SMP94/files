@@ -1,8 +1,8 @@
 <html>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src = "/home/spatil/pyfiles/static/test.js"></script> 
-<script>
+<script src="http://localhost/static/test.js"></script>
+<script> 
 /* $(document).ready(function () {
         $.get('http:localhost:80/check/', function (data) {
             var output = data; }
@@ -12,13 +12,16 @@
     });
 
 */
+</script>
+<div id = "viz">
+<script>
 %import json
 %temp = json.dumps(result['hist'])
 var stream = JSON.parse({{!temp}});
 %end
 confirm(stream);
  
-        stream.forEach(function(d){ document.write(d[0] + "<br>"); } ); 
+histogram(stream, "viz"); 
       
 </script>
 

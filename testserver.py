@@ -1,5 +1,5 @@
 import bottle,json, pymongo, zlib, base64,hashlib,cartesian
-from bottle import response, template, run
+from bottle import response, template, run, static_file
 from bottle import Bottle,get, post, response, route, run, template, request
 
 from pymongo import MongoClient
@@ -20,8 +20,11 @@ def home():
     hash = []
     for str in col.find():
 	hash.append(str['s1'])
-    print hash
     return template('list', hash = hash)
+
+@app.route('/static/<filename>')
+def server_static(filename):
+    return static_file(filename, root='/home/spatil/pyfiles/static')
 
 @app.route('/upload', method = 'POST')
 def do_upload():
